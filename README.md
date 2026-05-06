@@ -47,6 +47,6 @@ Authoritative working drafts and peer clarification docs may also live in [`../`
 ## My External links
 
 - **Tenacious-Bench (Week 11):** [github.com/Hiwot-Beyene/tenacious-bench](https://github.com/Hiwot-Beyene/tenacious-bench)  
-- **Conversion Engine (Week 10):** implementation in this workspace under [`conversion-engine/`](../../../conversion-engine/) — mirror or submodule on GitHub as i publish.  
+- **Conversion Engine (Week 10):** implementation in this workspace under [`conversion-engine/`]((https://github.com/Hiwot-Beyene/conversion-engine) — mirror or submodule on GitHub as i publish.  
 - **Writing:** [hiwotbeyene.substack.com](https://hiwotbeyene.substack.com/)  
 - **Hugging Face:** [huggingface.co/hiwot-beyene](https://huggingface.co/hiwot-beyene)  
