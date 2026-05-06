@@ -1,0 +1,9 @@
+# Grounding commit
+
+**Artifact:** [`conversion-engine/agent/agent/structured_logger.py`](../../../conversion-engine/agent/agent/structured_logger.py) (`StructuredLogger.emit` and the JSONL sink under `eval/agent_trace_log.jsonl`), plus call sites that build trace rows—primarily [`conversion-engine/agent/api/leads_router.py`](../../../conversion-engine/agent/api/leads_router.py) (enrich / send / reply / book paths) and [`conversion-engine/agent/agent/orchestrator.py`](../../../conversion-engine/agent/agent/orchestrator.py) (deterministic lifecycle / CRM sync).
+
+The edit wires Gersum’s attribution design from [`gersum_explainer.md`](gersum_explainer.md) into the Conversion Engine: each meaningful step logs **who decided**—not only **what ran**. Concretely, `metadata` (or adjacent JSONL lines) gains **decision-layer** fields aligned with his explainer: e.g. **`decision_layer`** (`scaffold` | `model` | `tool_runtime`), **`available_tools`** (or explicit empty list with `scaffold_only: true`), **`tool_schema_version`** / registry hash when real **`tools[]`** is used, **`state_machine_state`** / lead status snapshot, **`blocked_tools`** + **`block_reason`** when preconditions skip an action, and—when the provider returns them—**parsed model `tool_calls`** (name, args shape validity, `finish_reason`) **separately** from **`executed_tool_name`** / **`execution_status`** after Python runs. Post-hoc **`tool_calls`** lists like `enrichment.crunchbase` stay, but are tagged so they are not mistaken for model-emitted routing. The portfolio story matches the gap in [`question.md`](../question.md): traces become **mechanically attributable** as the funnel moves toward MCP / function-calling, without logging raw hidden reasoning or unnecessary PII (hashes, reason codes, summaries only).
+
+
+
+[conversion-engine main pending] Traces: scaffold vs model vs runtime; available_tools + schema version; block reasons; split parsed tool_calls from execution
